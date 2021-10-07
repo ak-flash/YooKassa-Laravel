@@ -133,7 +133,7 @@ class WebhookPayment
             # Check Payment
             $this->api->checkPayment($response->getMetadata()['uniq_id'], function($payment, $invoice) use($serializer){
                 # Log Success Payment
-                \Storage::disk('public')->append('payment/success.txt', json_encode($payment));
+                // \Storage::disk('public')->append('payment/success.txt', json_encode($payment));
 
                 # Execute custom function
                 $func = $this->callback()->exec();
@@ -150,7 +150,7 @@ class WebhookPayment
                 }
             }, function($payment, $invoice) use($serializer) {
                 # Log Error Payment
-                \Storage::disk('public')->append('payment/error.txt', json_encode($payment));
+                // \Storage::disk('public')->append('payment/error.txt', json_encode($payment));
 
                 # Execute custom function
                 $func = $this->callback()->exec('failed');
